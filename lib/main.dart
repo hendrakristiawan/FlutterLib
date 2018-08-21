@@ -19,35 +19,47 @@ class Menu extends StatelessWidget {
 class ButtonMenu extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
-    return new _buttonMenu();
+    return new MenuButton();
   }
 
 }
 
-class _buttonMenu extends State<ButtonMenu> {
+class MenuButton extends State<ButtonMenu> {
   static BuildContext _context;
-  static StatelessWidget _screen = null;
+  static StatelessWidget _screen;
 
   static void _nextScreen(){
     Navigator.push(_context, MaterialPageRoute(builder: (_context) => _screen));
   }
 
-  static RaisedButton  raisedButton(String label,StatelessWidget screen){
+  static Column  raisedButton(String label,StatelessWidget screen){
     _screen = screen;
 
-    return RaisedButton(
-      onPressed: _nextScreen,
-      textColor: Colors.white,
-      color: Colors.greenAccent,
-      padding: const EdgeInsets.all(8.0),
-      child: new Text(label),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children:[
+        Container(
+          margin: const EdgeInsets.only(top: 15.0),
+          child: RaisedButton(
+            shape: RoundedRectangleBorder(side: BorderSide.none,borderRadius: BorderRadius.all(Radius.circular(5.0))),
+            onPressed: _nextScreen,
+            textColor: Colors.white,
+            color: Colors.greenAccent,
+            padding: const EdgeInsets.all(8.0),
+            child: new Text(label),
+          ),
+        )
+      ],
     );
   }
 
   Widget buttonSection = Container(
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
+        raisedButton("Menu Drawer", DrawerMenu()),
         raisedButton("Menu Drawer", DrawerMenu())
       ],
     ),
