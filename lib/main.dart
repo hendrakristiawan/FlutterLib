@@ -26,13 +26,13 @@ class ButtonMenu extends StatefulWidget{
 
 class MenuButton extends State<ButtonMenu> {
   static BuildContext _context;
-  static StatelessWidget _screen;
+  static StatefulWidget _screen;
 
   static void _nextScreen(){
     Navigator.push(_context, MaterialPageRoute(builder: (_context) => _screen));
   }
 
-  static Column  raisedButton(String label,StatelessWidget screen){
+  static Column  raisedButton(String label,StatefulWidget screen){
     _screen = screen;
 
     return Column(
